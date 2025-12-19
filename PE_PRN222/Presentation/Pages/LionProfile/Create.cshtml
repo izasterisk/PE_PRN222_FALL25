@@ -1,0 +1,47 @@
+﻿@page
+@model Presentation.Pages.LionProfile.CreateModel
+@{
+    ViewData["Title"] = "Create Profile";
+}
+
+<h2>Create</h2>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+<form method="post">
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" name="LionName" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Type</label>
+        <select class="form-control" name="LionTypeId">
+            @foreach (var type in Model.Types)
+            {
+                <option value="@type.LionTypeId">@type.LionTypeName</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Weight</label>
+        <input type="number" step="0.01" class="form-control" name="Weight" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Characteristics</label>
+        <textarea class="form-control" name="Characteristics" rows="3"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Warning</label>
+        <textarea class="form-control" name="Warning" rows="3"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Create</button>
+    <a asp-page="Index" class="btn btn-secondary">Back</a>
+</form>
